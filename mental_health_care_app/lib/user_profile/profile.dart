@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mental_health_care_app/home_page/home_page.dart';
 import 'package:mental_health_care_app/main.dart';
+import 'package:mental_health_care_app/user_profile/widgets/profileMenu.dart';
+import 'package:mental_health_care_app/user_profile/updateProfile.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -83,17 +85,38 @@ class _ProfileState extends State<Profile> {
             padding: const EdgeInsets.all(25.0),
             child: Column(
               children: [
-                SizedBox(
-                  height: 120,
-                  width: 120,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image(
-                      image:
-                          const AssetImage('assets/images/profile_picture.jpg'),
-                      fit: BoxFit.cover,
+                Stack(
+                  children: [
+                    SizedBox(
+                      height: 120,
+                      width: 120,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image(
+                          image: const AssetImage(
+                              'assets/images/profile_picture.jpg'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: blueBackgroungColor,
+                        ),
+                        child: const Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 18.0,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 const SizedBox(
                   height: 10,
@@ -120,7 +143,16 @@ class _ProfileState extends State<Profile> {
                 SizedBox(
                   width: 180,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigate to UpdateProfile screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              UpdateProfile(), // Corrected class name
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: blueBackgroungColor,
                       shape: RoundedRectangleBorder(
@@ -138,13 +170,53 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const Divider(
                   color: Colors.white,
                 ),
                 const SizedBox(
                   height: 10,
+                ),
+
+                //Menu
+                ProfilemenuWidget(
+                  title: 'Settings',
+                  icon: Icons.settings,
+                  onPress: () {},
+                ),
+                ProfilemenuWidget(
+                  title: 'profile Management',
+                  icon: Icons.manage_accounts,
+                  onPress: () {},
+                ),
+                ProfilemenuWidget(
+                  title: 'Help Center',
+                  icon: Icons.help_center,
+                  onPress: () {},
+                ),
+                ProfilemenuWidget(
+                  title: 'Privacy policy',
+                  icon: Icons.privacy_tip,
+                  onPress: () {},
+                ),
+
+                const SizedBox(
+                  height: 20,
+                ),
+                Divider(
+                  color: Colors.grey.withOpacity(0),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+
+                ProfilemenuWidget(
+                  title: 'Log Out',
+                  icon: Icons.login_outlined,
+                  onPress: () {},
+                  endIcon: false,
+                  textColor: Colors.red,
                 ),
               ],
             ),
