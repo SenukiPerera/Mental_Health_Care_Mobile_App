@@ -56,7 +56,7 @@ class _ProfileState extends State<Profile> {
             icon: Icon(Icons.chat),
             label: 'Chat',
           ),
-          BottomNavigationBarItem(
+          BottomNavigationBarItem( 
             icon: Icon(Icons.health_and_safety),
             label: 'Solutions',
           ),
