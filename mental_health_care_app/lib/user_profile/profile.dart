@@ -214,7 +214,9 @@ class _ProfileState extends State<Profile> {
                 ProfilemenuWidget(
                   title: 'Log Out',
                   icon: Icons.login_outlined,
-                  onPress: () {},
+                  onPress: () {
+                    Navigator.pushNamed(context, '/LoginScreen');
+                  },
                   endIcon: false,
                   textColor: Colors.red,
                 ),
