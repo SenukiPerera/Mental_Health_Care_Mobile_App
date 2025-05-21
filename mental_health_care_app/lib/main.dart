@@ -8,7 +8,6 @@ import 'package:mental_health_care_app/forgotpassword/ForgotPasswordScreen.dart'
 import 'package:mental_health_care_app/screens/resources_screen.dart';
 import 'package:mental_health_care_app/screens/depression_test_screen.dart';
 
-
 // Theme Colors
 const Color blueBackgroungColor = Color(0xFF4A90E2);
 const Color lightBlueBackgroundColor = Color(0xFFEBF2FD);
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       debugShowCheckedModeBanner: false,
       title: 'MindCare App',
       theme: ThemeData(
@@ -43,12 +41,8 @@ class MyApp extends StatelessWidget {
         '/WelcomeScreen': (context) => WelcomeScreen(),
         '/LoginScreen': (context) => LoginScreen(),
         '/ForgotPassword': (context) => const ForgotPasswordScreen(),
-
-      home: HomePage(),
-      routes: {
         '/resources': (context) => const ResourcesScreen(),
         '/depression-test': (context) => const DepressionTestScreen(),
-
       },
     );
   }
