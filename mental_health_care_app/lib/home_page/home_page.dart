@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 import 'package:mental_health_care_app/util/emoji_faces.dart';
-import 'package:mental_health_care_app/user_profile/profile.dart'; // Import your Profile screen
-import 'package:mental_health_care_app/screens/resources_screen.dart'; // ✅ import
+import 'package:mental_health_care_app/user_profile/profile.dart';
+import 'package:mental_health_care_app/screens/resources_screen.dart';
+import 'package:mental_health_care_app/screens/depression_test_questions_screen.dart'; // ✅ Import screen
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,22 +15,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
-  // Method to handle BottomNavigationBar taps
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
 
-    // Navigate to different screens based on selected index
     if (index == 1) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ResourcesScreen()),
-    );
-  } else if (index == 4) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const Profile()),
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ResourcesScreen()),
+      );
+    } else if (index == 4) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Profile()),
       );
     }
   }
@@ -39,39 +38,23 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.blue, // Home icon and label when selected
-        unselectedItemColor: Colors.black, // All other icons and labels
-        type: BottomNavigationBarType.fixed, // Keeps all labels visible
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Resources',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.health_and_safety),
-            label: 'Solutions',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Resources'),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+          BottomNavigationBarItem(icon: Icon(Icons.health_and_safety), label: 'Solutions'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
-            // Greeting Row (Fixed)
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -80,9 +63,8 @@ class _HomePageState extends State<HomePage> {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
-                    offset: Offset(0, 4), // 👇 bottom shadow
+                    offset: const Offset(0, 4),
                     blurRadius: 6,
-                    spreadRadius: 0,
                   ),
                 ],
               ),
@@ -121,7 +103,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            // Scrollable Content
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -129,7 +110,6 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 20.0),
-                    // Mood Tracker Container
                     Container(
                       decoration: BoxDecoration(
                         color: lightBlueBackgroundColor,
@@ -159,9 +139,7 @@ class _HomePageState extends State<HomePage> {
                               height: 40,
                               width: 200,
                               child: ElevatedButton(
-                                onPressed: () {
-                                  // Navigate to mood history
-                                },
+                                onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: blueBackgroungColor,
                                   shape: RoundedRectangleBorder(
@@ -183,7 +161,6 @@ class _HomePageState extends State<HomePage> {
                     ),
 
                     const SizedBox(height: 25.0),
-                    // Resources Section
                     Text(
                       'Explore Our Resources',
                       style: TextStyle(
@@ -196,154 +173,25 @@ class _HomePageState extends State<HomePage> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(children: [
-                        // Resource 1
-                        Container(
-                          height: 257,
-                          width: 250,
-                          decoration: BoxDecoration(
-                            color: lightBlueBackgroundColor,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          alignment: Alignment.center,
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  topRight: Radius.circular(12),
-                                ),
-                                child: Image.asset(
-                                  'assets/images/image1.jpg',
-                                  width: 280,
-                                  height: 110,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              Text(
-                                'Coping with Anxiety',
-                                style: TextStyle(
-                                  color: blueBackgroungColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 8.0),
-                              Text(
-                                'Explore effective strategies to manage\nanxiety in your daily life.',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(120, 40),
-                                    backgroundColor: blueBackgroungColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    'Read More',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                            ],
-                          ),
+                        _buildResourceCard(
+                          imagePath: 'assets/images/image1.jpg',
+                          title: 'Coping with Anxiety',
+                          description:
+                              'Explore effective strategies to manage\nanxiety in your daily life.',
                         ),
-                        SizedBox(
-                          width: 12.0,
-                        ),
-                        // Resource 2
-                        Container(
-                          height: 257,
-                          width: 250,
-                          decoration: BoxDecoration(
-                            color: lightBlueBackgroundColor,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          alignment: Alignment.center,
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  topRight: Radius.circular(12),
-                                ),
-                                child: Image.asset(
-                                  'assets/images/image2.jpg',
-                                  width: 280,
-                                  height: 110,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              Text(
-                                'Managing Stress',
-                                style: TextStyle(
-                                  color: blueBackgroungColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 8.0),
-                              Text(
-                                'Learn how to manage stress with practical techniques.',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                              ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(120, 40),
-                                    backgroundColor: blueBackgroungColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    'Read More',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                              SizedBox(
-                                height: 8.0,
-                              ),
-                            ],
-                          ),
+                        const SizedBox(width: 12.0),
+                        _buildResourceCard(
+                          imagePath: 'assets/images/image2.jpg',
+                          title: 'Managing Stress',
+                          description: 'Learn how to manage stress with practical techniques.',
                         ),
                       ]),
                     ),
 
                     const SizedBox(height: 25.0),
-                    // Meditation Section
                     Container(
                       child: Center(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
                               'assets/images/Meditation.png',
@@ -358,41 +206,43 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(
-                              height: 8.0,
-                            ),
+                            const SizedBox(height: 8.0),
                             ElevatedButton(
-                                onPressed: () {
-                                  // Navigate to the next page
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: Size(120, 40),
-                                  backgroundColor: blueBackgroungColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const DepressionTestQuestionsScreen(),
                                   ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(120, 40),
+                                backgroundColor: blueBackgroungColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: Text(
-                                  'Start Test',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )),
+                              ),
+                              child: const Text(
+                                'Start Test',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
 
                     const SizedBox(height: 25.0),
-                    // Chat Section
                     Container(
                       alignment: Alignment.center,
                       child: Column(
                         children: [
-                          Icon(Icons.chat,
-                              size: 100, color: blueBackgroungColor),
+                          Icon(Icons.chat, size: 100, color: blueBackgroungColor),
                           Text(
                             'Chat with an Expert',
                             style: TextStyle(
@@ -403,16 +253,16 @@ class _HomePageState extends State<HomePage> {
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              // Open Chat screen
+                              // TODO: Open Chat screen
                             },
                             style: ElevatedButton.styleFrom(
-                              minimumSize: Size(120, 40),
+                              minimumSize: const Size(120, 40),
                               backgroundColor: blueBackgroungColor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
                             ),
-                            child: Text(
+                            child: const Text(
                               'Chat Now',
                               style: TextStyle(
                                 color: Colors.white,
@@ -431,6 +281,77 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  // Helper method to build resource cards
+  Widget _buildResourceCard({
+    required String imagePath,
+    required String title,
+    required String description,
+  }) {
+    return Container(
+      height: 257,
+      width: 250,
+      decoration: BoxDecoration(
+        color: lightBlueBackgroundColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+            child: Image.asset(
+              imagePath,
+              width: 280,
+              height: 110,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            title,
+            style: TextStyle(
+              color: blueBackgroungColor,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 12,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          ElevatedButton(
+            onPressed: () {
+              // TODO: Add action
+            },
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(120, 40),
+              backgroundColor: blueBackgroungColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            child: const Text(
+              'Read More',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

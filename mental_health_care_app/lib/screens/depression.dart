@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'depression_test_screen.dart'; // ✅ Import the test screen
 
 class DepressionPage extends StatelessWidget {
   DepressionPage({super.key});
@@ -279,7 +280,13 @@ class DepressionPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: Navigate to Self Depression Test
+                    // ✅ Navigate to Self Depression Test
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DepressionTestScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 150, 223, 178),
@@ -298,7 +305,7 @@ class DepressionPage extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              // 📦 New Card
+              // Professional Help Card
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Card(
@@ -315,7 +322,7 @@ class DepressionPage extends StatelessWidget {
                           topRight: Radius.circular(12),
                         ),
                         child: Image.asset(
-                          'assets/images/mood.png', // ✅ Replace with your image path
+                          'assets/images/mood.png',
                           height: 180,
                           width: double.infinity,
                           fit: BoxFit.cover,
