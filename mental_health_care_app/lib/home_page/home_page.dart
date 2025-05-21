@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import 'package:mental_health_care_app/util/emoji_faces.dart';
 import 'package:mental_health_care_app/user_profile/profile.dart'; // Import your Profile screen
+import 'package:mental_health_care_app/screens/resources_screen.dart'; // ✅ import
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,12 +21,15 @@ class _HomePageState extends State<HomePage> {
     });
 
     // Navigate to different screens based on selected index
-    if (_selectedIndex == 4) {
-      // Index 4 corresponds to the Profile tab
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => Profile()), // Navigate to Profile screen
+    if (index == 1) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ResourcesScreen()),
+    );
+  } else if (index == 4) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const Profile()),
       );
     }
   }

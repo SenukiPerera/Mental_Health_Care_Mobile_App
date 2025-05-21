@@ -3,6 +3,8 @@ import 'package:mental_health_care_app/main.dart';
 import 'package:mental_health_care_app/user_profile/widgets/textFormField.dart';
 
 class UpdateProfile extends StatelessWidget {
+  const UpdateProfile({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
