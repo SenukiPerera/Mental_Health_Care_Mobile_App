@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mental_health_care_app/home_page/home_page.dart';
 import 'package:mental_health_care_app/main.dart';
+import 'package:mental_health_care_app/screens/resources_screen.dart';
 import 'package:mental_health_care_app/user_profile/widgets/profileMenu.dart';
 import 'package:mental_health_care_app/user_profile/updateProfile.dart';
 
@@ -27,6 +28,11 @@ class _ProfileState extends State<Profile> {
         context,
         MaterialPageRoute(
             builder: (context) => HomePage()), // Navigate to Home screen
+      );
+    } else if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ResourcesScreen()),
       );
     }
   }
@@ -56,7 +62,7 @@ class _ProfileState extends State<Profile> {
             icon: Icon(Icons.chat),
             label: 'Chat',
           ),
-          BottomNavigationBarItem( 
+          BottomNavigationBarItem(
             icon: Icon(Icons.health_and_safety),
             label: 'Solutions',
           ),
