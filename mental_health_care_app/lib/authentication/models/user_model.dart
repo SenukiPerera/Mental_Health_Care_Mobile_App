@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserModel {
   final String? id;
   final String fullName;
@@ -13,12 +15,35 @@ class UserModel {
     required this.password,
   });
 
+  factory UserModel.fromSnapshot(DocumentSnapshot snapshot) {
+    final data = snapshot.data() as Map<String, dynamic>;
+    return UserModel(
+      fullName: data['fullName'] ?? '',
+      email: data['email'] ?? '',
+      phoneNo: data['phoneNo'] ?? '',
+      password: data['password'] ?? '',
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
-      "FullName": fullName,
-      "Email": email,
-      "Phone": phoneNo,
-      // Exclude password from Firestore if desired
+      "fullName": fullName,
+      "email": email,
+      "phoneNo": phoneNo,
+      "password": password,
     };
   }
+
+  //fetch data from firestore
+  /* factory UserModel.formSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> document) {
+    final data = document.data()!;
+    return UserModel(
+      id: snapshot.id,
+      email: data["Email"],
+      password: data["Password"],
+      fullName: data["FullName"],
+      phoneNo: data["Phone"],
+    );
+  }*/
 }

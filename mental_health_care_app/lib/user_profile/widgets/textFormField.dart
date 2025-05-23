@@ -7,16 +7,19 @@ class textFormField extends StatelessWidget {
     required this.icon,
     this.controller,
     this.isPassword = false,
+    this.initialValue,
   });
 
   final String labelText;
   final IconData icon;
   final TextEditingController? controller;
   final bool isPassword;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       controller: controller,
       decoration: InputDecoration(
           labelText: labelText,
