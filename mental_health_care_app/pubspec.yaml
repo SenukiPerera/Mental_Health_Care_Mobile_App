@@ -12,17 +12,23 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
 
-  
-
   firebase_core: ^3.13.0
   firebase_auth: ^5.5.4
   get: ^4.7.2
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.3
 
+flutter_icons:      
+  android: true
+  ios: true
+  image_path: "assets/images/icon_app.png"
+
+  
 flutter:
   uses-material-design: true
   assets:
@@ -35,6 +41,7 @@ flutter:
     - assets/images/Mindcare logo.png
     - assets/images/onboarding_image.png
     - assets/images/google.png
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -60,8 +67,7 @@ flutter:
     - assets/images/mood.png
     - assets/images/deptest.png
     - assets/images/Mindcare_logo.png
-
-
+    - assets/images/icon_app.png
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
