@@ -16,18 +16,15 @@ import 'package:mental_health_care_app/repository/authentication_repositiry/auth
 const Color blueBackgroungColor = Color(0xFF4A90E2);
 const Color lightBlueBackgroundColor = Color(0xFFEBF2FD);
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   Get.put(AuthenticationRepositiry()); // Put your repo before runApp
 
-
   // Uncomment when Firebase is added
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-
 
   runApp(const MyApp());
 }
@@ -38,9 +35,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
-      home: HomePage(),
-
       debugShowCheckedModeBanner: false,
       title: 'MindCare App',
       theme: ThemeData(
@@ -59,7 +53,6 @@ class MyApp extends StatelessWidget {
         '/resources': (context) => const ResourcesScreen(),
         '/depression-test': (context) => const DepressionTestScreen(),
       },
-
     );
   }
 }

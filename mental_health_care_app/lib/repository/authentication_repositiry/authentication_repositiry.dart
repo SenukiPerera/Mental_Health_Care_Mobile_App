@@ -39,14 +39,14 @@ class AuthenticationRepositiry extends GetxController {
       // No need to navigate here, onReady listener will handle it.
     } on FirebaseAuthException catch (e) {
       print("FirebaseAuthException: ${e.message}");
-      throw e;
+      rethrow;
     }
   }
 
   Future<void> loginWithEmailAndPassword(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
     } catch (_) {}
   }
 

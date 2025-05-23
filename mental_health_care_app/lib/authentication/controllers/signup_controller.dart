@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:mental_health_care_app/repository/authentication_repositiry/authentication_repositiry.dart';
-import 'package:mental_health_care_app/repository/authentication_repositiry/exceptions/signup_email_password_failure.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
@@ -19,7 +19,11 @@ class SignUpController extends GetxController {
         email.text.trim(),
         password.text.trim(),
       );
+
+      // Set display name in Firebase Auth
+    await FirebaseAuth.instance.currentUser?.updateDisplayName(fullName.text.trim());
       print("Registration successful");
+      
       return true;
     } catch (e) {
       print("Registration failed: $e");
