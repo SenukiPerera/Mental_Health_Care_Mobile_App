@@ -5,14 +5,17 @@ class textFormField extends StatelessWidget {
     super.key,
     required this.labelText,
     required this.icon,
+    this.controller,
   });
 
   final String labelText;
   final IconData icon;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
           labelText: labelText,
           prefixIcon: Icon(icon),
