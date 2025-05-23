@@ -6,11 +6,13 @@ class textFormField extends StatelessWidget {
     required this.labelText,
     required this.icon,
     this.controller,
+    this.isPassword = false,
   });
 
   final String labelText;
   final IconData icon;
   final TextEditingController? controller;
+  final bool isPassword;
 
   @override
   Widget build(BuildContext context) {

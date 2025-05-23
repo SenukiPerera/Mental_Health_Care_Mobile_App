@@ -1,11 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mental_health_care_app/home_page/home_page.dart';
-import 'package:mental_health_care_app/repository/authentication_repositiry/Exceptions/signup_email_password_failure.dart';
 import 'package:mental_health_care_app/welcome/welcome_screen.dart';
-import 'package:mental_health_care_app/firebase_options.dart';
 
 class AuthenticationRepositiry extends GetxController {
   static AuthenticationRepositiry get instance => Get.find();
