@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mental_health_care_app/home_page/home_page.dart';
 import 'package:mental_health_care_app/main.dart';
 import 'package:mental_health_care_app/screens/resources_screen.dart';
@@ -14,6 +15,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   int _selectedIndex = 4; // Start with Profile tab selected
+  final User? user = FirebaseAuth.instance.currentUser;
 
   // Method to handle BottomNavigationBar taps
   void _onItemTapped(int index) {
@@ -127,17 +129,17 @@ class _ProfileState extends State<Profile> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
-                  'Anna Doe',
-                  style: TextStyle(
+                Text(
+                  user?.displayName ?? 'No name',
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
                 ),
-                const Text(
-                  'anna@gmail.com',
-                  style: TextStyle(
+                Text(
+                  user?.email ?? 'No email',
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,

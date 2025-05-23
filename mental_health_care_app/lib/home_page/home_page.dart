@@ -3,7 +3,7 @@ import '../main.dart';
 import 'package:mental_health_care_app/util/emoji_faces.dart';
 import 'package:mental_health_care_app/user_profile/profile.dart';
 import 'package:mental_health_care_app/screens/resources_screen.dart';
-import 'package:mental_health_care_app/screens/depression_test_questions_screen.dart'; // ✅ Import screen
+import 'package:mental_health_care_app/screens/depression_test_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -47,7 +47,8 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Resources'),
           BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
-          BottomNavigationBarItem(icon: Icon(Icons.health_and_safety), label: 'Solutions'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.health_and_safety), label: 'Solutions'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
@@ -102,7 +103,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -134,32 +134,9 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           const SizedBox(height: 20.0),
-                          Center(
-                            child: SizedBox(
-                              height: 40,
-                              width: 200,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: blueBackgroungColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: const Text(
-                                  'View Mood History',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
-
                     const SizedBox(height: 25.0),
                     Text(
                       'Explore Our Resources',
@@ -183,11 +160,11 @@ class _HomePageState extends State<HomePage> {
                         _buildResourceCard(
                           imagePath: 'assets/images/image2.jpg',
                           title: 'Managing Stress',
-                          description: 'Learn how to manage stress with practical techniques.',
+                          description:
+                              'Learn how to manage stress with practical techniques.',
                         ),
                       ]),
                     ),
-
                     const SizedBox(height: 25.0),
                     Container(
                       child: Center(
@@ -212,7 +189,8 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const DepressionTestQuestionsScreen(),
+                                    builder: (context) =>
+                                        const DepressionTestScreen(),
                                   ),
                                 );
                               },
@@ -236,13 +214,13 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-
                     const SizedBox(height: 25.0),
                     Container(
                       alignment: Alignment.center,
                       child: Column(
                         children: [
-                          Icon(Icons.chat, size: 100, color: blueBackgroungColor),
+                          Icon(Icons.chat,
+                              size: 100, color: blueBackgroungColor),
                           Text(
                             'Chat with an Expert',
                             style: TextStyle(
@@ -333,7 +311,12 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 8.0),
           ElevatedButton(
             onPressed: () {
-              // TODO: Add action
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ResourcesScreen(),
+                ),
+              );
             },
             style: ElevatedButton.styleFrom(
               minimumSize: const Size(120, 40),

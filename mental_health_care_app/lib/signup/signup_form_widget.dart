@@ -12,12 +12,12 @@ class signup_form_widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: Form(
-          key: _formKey,
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -66,7 +66,7 @@ class signup_form_widget extends StatelessWidget {
                     shadowColor: Colors.transparent,
                   ),
                   onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                       final success = await controller.registerUser();
                       if (success) {
                         Navigator.pushNamedAndRemoveUntil(
