@@ -188,17 +188,6 @@ class _SleepImprovementScreenState extends State<SleepImprovementScreen>
           decoration: BoxDecoration(
             color: colorA.withOpacity(0.2),
             borderRadius: BorderRadius.circular(20),
-            // border: Border.all(
-            //   color: accentColor,
-            //   width: 2,
-            // ),
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: Colors.black.withOpacity(0.1),
-            //     blurRadius: 8,
-            //     offset: const Offset(0, 2),
-            //   ),
-            // ],
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -243,13 +232,6 @@ class _SleepImprovementScreenState extends State<SleepImprovementScreen>
         decoration: BoxDecoration(
           color: colorA.withOpacity(0.1),
           borderRadius: BorderRadius.circular(24),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.black.withOpacity(0.1),
-          //     blurRadius: 15,
-          //     offset: const Offset(0, 5),
-          //   ),
-          // ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -303,10 +285,6 @@ class _SleepImprovementScreenState extends State<SleepImprovementScreen>
                 decoration: BoxDecoration(
                   color: colorB,
                   borderRadius: BorderRadius.circular(12),
-                  // border: Border.all(
-                  //   color: tipColor,
-                  //   width: 2,
-                  // ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -365,13 +343,6 @@ class _SleepImprovementScreenState extends State<SleepImprovementScreen>
       decoration: BoxDecoration(
         color: colorA.withOpacity(0.2),
         borderRadius: BorderRadius.circular(20),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.grey.withOpacity(0.1),
-        //     blurRadius: 15,
-        //     offset: const Offset(0, 5),
-        //   ),
-        // ],
       ),
       child: Theme(
         data: Theme.of(context).copyWith(
@@ -478,10 +449,6 @@ class _SleepImprovementScreenState extends State<SleepImprovementScreen>
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20),
-        // border: Border.all(
-        //   color: colorC.withOpacity(0.2),
-        //   width: 1,
-        // ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -631,24 +598,11 @@ class _SleepImprovementScreenState extends State<SleepImprovementScreen>
           style: TextStyle(color: colorA, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: colorA, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
-      // appBar: AppBar(
-      //   backgroundColor: colorB,
-      //   elevation: 0,
-      //   title: Text(
-      //     'Sleep Improvement',
-      //     style: TextStyle(
-      //       color: colorA,
-      //       fontWeight: FontWeight.bold,
-      //       fontSize: 20,
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      //   leading: IconButton(
-      //     icon: Icon(Icons.arrow_back_ios, color: colorA),
-      //     onPressed: () => Navigator.of(context).pop(),
-      //   ),
-      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),

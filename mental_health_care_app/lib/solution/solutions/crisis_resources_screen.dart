@@ -9,13 +9,12 @@ class CrisisResourcesScreen extends StatelessWidget {
     {"name": "National Institute of Mental Health", "number": "0112578234"},
     {"name": "Mind Heals Sri Lanka", "number": "0713120740"},
     {
-      "name": "Sithnivana Mental Health Rehabilitation & Counselling Centre",
+      "name": "Sithanivana Mental Health Rehabilitation & Counselling Centre",
       "number": "0342239245"
     },
   ];
 
   final List<Map<String, String>> calmingTips = const [
-    //{"emoji": "🧘", "tip": "Take 10 deep, slow breaths."},
     {"emoji": "🎧", "tip": "Listen to your favorite relaxing music."},
     {"emoji": "🌿", "tip": "Go outside or near a window and look at the sky."},
     {"emoji": "🚶", "tip": "Take a short walk — even in your room."},
@@ -51,56 +50,114 @@ class CrisisResourcesScreen extends StatelessWidget {
 
   Widget _buildHotlineCard(String name, String number) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: colorA.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(14),
-        //border: Border.all(color: colorA.withOpacity(0.15)),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: colorA.withOpacity(0.1),
-        //     blurRadius: 6,
-        //     offset: const Offset(0, 2),
-        //   ),
-        // ],
+        borderRadius: BorderRadius.circular(20),
       ),
+      padding: const EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            name,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: colorD,
-            ),
-          ),
-          //const SizedBox(height: 6),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("📞 $number",
-                  style: const TextStyle(color: colorE, fontSize: 16)),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () => _launchCall(number),
-                    icon: const Icon(
-                      Icons.call,
-                      color: Colors.green,
-                      size: 30,
+              // Container(
+              //   padding: const EdgeInsets.all(12),
+              //   decoration: BoxDecoration(
+              //     color: colorC.withOpacity(0.15),
+              //     borderRadius: BorderRadius.circular(16),
+              //   ),
+              //   child: const Icon(Icons.phone, color: colorC, size: 28),
+              // ),
+              //const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: colorE,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      "📞 $number",
+                      style: const TextStyle(
+                        fontSize: 15,
+                        color: colorD,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                    //color: Colors.green.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                        color: Colors.green.withOpacity(0.3), width: 1),
+                  ),
+                  child: InkWell(
+                    onTap: () => _launchCall(number),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.call, color: Colors.green, size: 20),
+                        SizedBox(width: 8),
+                        Text(
+                          'Call Now',
+                          style: TextStyle(
+                            color: colorD,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  IconButton(
-                    onPressed: () => _launchSMS(number),
-                    icon: const Icon(
-                      Icons.sms,
-                      color: Colors.orange,
-                      size: 30,
+                ),
+              ),
+              const SizedBox(width: 30),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                    //color: Colors.orange.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                        color: Colors.orange.withOpacity(0.3), width: 1),
+                  ),
+                  child: InkWell(
+                    onTap: () => _launchSMS(number),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.sms, color: Colors.orange, size: 20),
+                        SizedBox(width: 8),
+                        Text(
+                          'Send SMS',
+                          style: TextStyle(
+                            color: colorD,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
             ],
           ),
@@ -111,20 +168,34 @@ class CrisisResourcesScreen extends StatelessWidget {
 
   Widget _buildTipCard(String emoji, String text) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 6),
-      padding: const EdgeInsets.all(14),
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: colorB,
-        borderRadius: BorderRadius.circular(12),
+        color: colorA.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: colorA.withOpacity(0.2), width: 2),
       ),
+      padding: const EdgeInsets.all(16),
       child: Row(
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 20)),
-          const SizedBox(width: 12),
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(emoji, style: const TextStyle(fontSize: 20)),
+          ),
+          const SizedBox(width: 16),
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(fontSize: 15, color: colorE, height: 1.4),
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: colorE,
+                height: 1.2,
+              ),
             ),
           ),
         ],
@@ -134,30 +205,95 @@ class CrisisResourcesScreen extends StatelessWidget {
 
   Widget _buildFallbackHelp() {
     return Container(
-      margin: const EdgeInsets.only(top: 20),
-      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: colorA.withOpacity(0.2),
-        borderRadius: BorderRadius.circular(14),
+        color: colorA.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(20),
       ),
+      padding: const EdgeInsets.all(24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "📵 What if I can’t call or text?",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: colorD,
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: colorC.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Icon(Icons.help, color: colorC, size: 28),
+              ),
+              const SizedBox(width: 16),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "What if I can't call or text?",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: colorE,
+                        letterSpacing: 0.3,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Alternative ways to get help when you need it',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: colorD,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildBullet(
+                  'Ask someone nearby like a friend, family member, or neighbor'),
+              _buildBullet(
+                  'Go to a safe place: a clinic, library, or someone you trust'),
+              _buildBullet(
+                  'Focus on calming yourself for a few minutes using the tips above'),
+              _buildBullet(
+                  'Remember: This moment will pass - you are not alone'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBullet(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 6,
+            height: 6,
+            margin: const EdgeInsets.only(top: 8, right: 12),
+            decoration: BoxDecoration(
+              color: colorC,
+              borderRadius: BorderRadius.circular(3),
             ),
           ),
-          const SizedBox(height: 10),
-          const Text(
-            "- Try asking someone nearby like a friend, family member, or neighbor.\n"
-            "- Go to a safe place: a clinic, library, or someone you trust.\n"
-            "- Focus on calming yourself for a few minutes using the tips above.\n"
-            "- Remember: This moment will pass - you are not alone.",
-            style: TextStyle(color: colorE, fontSize: 16, height: 1.5),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontSize: 15,
+                color: colorD,
+                height: 1.4,
+              ),
+            ),
           ),
         ],
       ),
@@ -167,7 +303,6 @@ class CrisisResourcesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: colorB,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(
@@ -178,60 +313,60 @@ class CrisisResourcesScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        //automaticallyImplyLeading: false, // This removes the back arrow
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: colorA, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
-      // appBar: AppBar(
-      //   backgroundColor: colorB,
-      //   elevation: 0,
-      //   title: const Text('Crisis Resources', style: TextStyle(color: colorD)),
-      //   iconTheme: const IconThemeData(color: colorD),
-      // ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 10),
             const Text(
-              "You are not alone.",
+              "You are not alone. Fast help is available.",
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
                 color: colorE,
               ),
             ),
-            const SizedBox(height: 6),
-            const Text(
-              "Fast help is available. Use any of the tools below.",
-              style: TextStyle(fontSize: 17, color: colorE),
-            ),
-            const SizedBox(height: 30),
-            const Text(
-              "Urgent Contacts",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: colorD,
+            const SizedBox(height: 15),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: const Text(
+                'Urgent Contacts',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                  color: colorD,
+                  letterSpacing: 0.3,
+                ),
               ),
             ),
-            //const SizedBox(height: 12),
+            const SizedBox(height: 16),
             for (var hotline in hotlines)
               _buildHotlineCard(hotline['name']!, hotline['number']!),
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
             _buildFallbackHelp(),
-            const SizedBox(height: 35),
-            const Text(
-              "Quick Calming Tips",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: colorD,
+            const SizedBox(height: 32),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: const Text(
+                'Quick Calming Tips',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                  color: colorE,
+                  letterSpacing: 0.3,
+                ),
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 16),
             for (var tip in calmingTips)
               _buildTipCard(tip['emoji']!, tip['tip']!),
-            //_buildFallbackHelp(),
-            const SizedBox(height: 40),
+            const SizedBox(height: 16),
           ],
         ),
       ),

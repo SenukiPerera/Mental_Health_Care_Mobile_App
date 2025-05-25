@@ -3,7 +3,9 @@ import 'package:mental_health_care_app/home_page/home_page.dart';
 import 'package:mental_health_care_app/screens/resources_screen.dart';
 import 'package:mental_health_care_app/solution/constants/colors.dart';
 import 'package:mental_health_care_app/solution/solutions/crisis_resources_screen.dart';
+//import 'package:mental_health_care_app/solution/solutions/journaling_screen.dart';
 import 'package:mental_health_care_app/solution/solutions/mindfulness_screen.dart';
+//import 'package:mental_health_care_app/solution/solutions/physical_wellness_screen.dart';
 import 'package:mental_health_care_app/solution/solutions/sleep_improvement_screen.dart';
 
 class Solutions extends StatefulWidget {
@@ -73,7 +75,24 @@ class _SolutionsState extends State<Solutions> {
           ),
         );
         break;
-      // // Add more cases for future pages
+      // case 'Physical Wellness':
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => const PhysicalWellness(),
+      //     ),
+      //   );
+      //   break;
+      // case 'Journaling':
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => CreativeExpression(),
+      //     ),
+      //   );
+      //   break;
+
+      // // Add more cases for future pages PhysicalWellness
       // default:
       //   ScaffoldMessenger.of(context).showSnackBar(
       //     SnackBar(content: Text('Page for "$title" not yet implemented.')),
@@ -206,8 +225,8 @@ class _SolutionsState extends State<Solutions> {
                     colorA.withOpacity(0.3),
                   ),
                   buildSolutionCard(
-                    'Journaling',
-                    Icons.menu_book,
+                    'Creative Expression',
+                    Icons.palette,
                     colorA.withOpacity(0.45),
                   ),
                   buildSolutionCard(

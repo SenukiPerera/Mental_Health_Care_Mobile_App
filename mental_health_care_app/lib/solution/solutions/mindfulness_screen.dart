@@ -265,6 +265,10 @@ class _MindfulnessPageState extends State<MindfulnessPage>
           style: TextStyle(color: colorA, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios, color: colorA, size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(
