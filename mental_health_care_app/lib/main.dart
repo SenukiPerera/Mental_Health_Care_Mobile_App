@@ -4,6 +4,7 @@ import 'package:mental_health_care_app/Splash_Screen/splashscreen.dart';
 import 'package:mental_health_care_app/firebase_options.dart';
 import 'package:mental_health_care_app/home_page/home_page.dart';
 import 'package:mental_health_care_app/login/login_screen.dart';
+import 'package:mental_health_care_app/repository/user_repository/user_repository.dart';
 import 'package:mental_health_care_app/signup/signup_screen.dart';
 import 'package:mental_health_care_app/welcome/welcome_screen.dart';
 import 'package:mental_health_care_app/forgotpassword/ForgotPasswordScreen.dart'; // Update path if neede
@@ -19,6 +20,8 @@ const Color lightBlueBackgroundColor = Color(0xFFEBF2FD);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  Get.put(UserRepository()); // Register repository here
 
   Get.put(AuthenticationRepositiry()); // Put your repo before runApp
 
