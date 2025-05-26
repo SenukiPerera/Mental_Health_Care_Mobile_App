@@ -9,11 +9,16 @@ class ProfileController extends GetxController {
   final _authRepo = Get.put(AuthenticationRepositiry());
   final _userRepo = Get.put(UserRepository());
 
+  @override
+  void onInit() {
+    super.onInit();
+    getUserData(); // Automatically refresh when initialized
+  }
+
   getUserData() {
-    // Fetch user data from the repository and update the controllers
-    final email = _authRepo.firebaseUser.value?.email;
-    if (email != null) {
-      return _userRepo.getUserDetails(email);
+    final uid = _authRepo.firebaseUser.value?.uid;
+    if (uid != null) {
+      return _userRepo.getUserDetails(uid); // Pass UID
     } else {
       Get.snackbar("Error", "Login to continue");
     }
