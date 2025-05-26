@@ -32,6 +32,7 @@ class UserRepository extends GetxController {
   }
 
   //fetch details of user
+
   Future<UserModel> getUserDetails(String uid) async {
     final snapshot =
         await FirebaseFirestore.instance.collection("Users").doc(uid).get();
@@ -41,7 +42,7 @@ class UserRepository extends GetxController {
     } else {
       throw Exception("User not found");
     }
-  }
+
 
   Future<List<UserModel>> allUser() async {
     final snapshot = await _db.collection("Users").get();
