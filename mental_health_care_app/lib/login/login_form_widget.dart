@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:mental_health_care_app/main.dart';
 import 'package:mental_health_care_app/user_profile/widgets/textFormField.dart';
 
@@ -7,7 +7,7 @@ class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  _LoginFormState createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
@@ -15,15 +15,24 @@ class _LoginFormState extends State<LoginForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      print("Already signed in as: ${currentUser.email}");
+    }
+  }
+
   Future<void> _login() async {
+    await FirebaseAuth.instance.signOut(); // Sign out before login
+
     if (_formKey.currentState!.validate()) {
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
-
-        // Navigate to home if login is successful
         Navigator.pushNamed(context, '/HomeScreen');
       } on FirebaseAuthException catch (e) {
         String message = '';
@@ -38,7 +47,6 @@ class _LoginFormState extends State<LoginForm> {
             message = 'Login failed. Please try again.';
         }
 
-        // Show snackbar with error
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(message)),
         );
@@ -49,24 +57,38 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: _formKey, // <-- Added form key
       child: Column(
         children: [
           textFormField(
-            controller: _emailController,
             labelText: 'Email',
             icon: Icons.email,
-            validator: (value) =>
-                value == null || value.isEmpty ? 'Enter your email' : null,
+            controller: _emailController, // <-- Pass controller
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your email';
+              }
+              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                return 'Please enter a valid email';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 20),
           textFormField(
-            controller: _passwordController,
             labelText: 'Password',
             icon: Icons.lock,
+            controller: _passwordController, // <-- Pass controller
             obscureText: true,
-            validator: (value) =>
-                value == null || value.isEmpty ? 'Enter your password' : null,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password';
+              }
+              if (value.length < 6) {
+                return 'Password must be at least 6 characters';
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 20),
           Container(
@@ -83,7 +105,7 @@ class _LoginFormState extends State<LoginForm> {
                 style: TextStyle(color: Colors.white, fontSize: 18),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

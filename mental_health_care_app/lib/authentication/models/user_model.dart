@@ -5,12 +5,14 @@ class UserModel {
   final String fullName;
   final String email;
   final String phoneNo;
+  final String? password; // Optional, if you want to store it
 
   UserModel({
     this.id,
     required this.fullName,
     required this.email,
     required this.phoneNo,
+    this.password,
   });
 
   factory UserModel.fromSnapshot(DocumentSnapshot snapshot) {
@@ -20,6 +22,7 @@ class UserModel {
       fullName: data['fullName'] ?? '',
       email: data['email'] ?? '',
       phoneNo: data['phoneNo'] ?? '',
+      password: data['password'], // Optional, if you want to store it
     );
   }
 
@@ -28,6 +31,7 @@ class UserModel {
       "fullName": fullName,
       "email": email,
       "phoneNo": phoneNo,
+      "password": password,
     };
   }
 }
