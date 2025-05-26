@@ -32,12 +32,17 @@ class UserRepository extends GetxController {
   }
 
   //fetch details of user
-  Future<UserModel?> getUserDetails(String email) async {
+
+  Future<UserModel> getUserDetails(String uid) async {
     final snapshot =
-        await _db.collection("Users").where("Email", isEqualTo: email).get();
-    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
-    return userData;
-  }
+        await FirebaseFirestore.instance.collection("Users").doc(uid).get();
+    if (snapshot.exists) {
+      return UserModel.fromSnapshot(
+          snapshot); // You must have a fromSnapshot() method in UserModel
+    } else {
+      throw Exception("User not found");
+    }
+
 
   Future<List<UserModel>> allUser() async {
     final snapshot = await _db.collection("Users").get();
