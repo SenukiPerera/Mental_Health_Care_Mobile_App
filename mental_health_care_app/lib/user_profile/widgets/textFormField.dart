@@ -6,33 +6,40 @@ class textFormField extends StatelessWidget {
     required this.labelText,
     required this.icon,
     this.controller,
-    this.isPassword = false,
+    this.obscureText = false,
     this.initialValue,
+    this.validator,
   });
 
   final String labelText;
   final IconData icon;
   final TextEditingController? controller;
-  final bool isPassword;
+  final bool obscureText;
   final String? initialValue;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: initialValue,
       controller: controller,
+      // Pass initialValue only if controller is null
+      initialValue: controller == null ? initialValue : null,
+      obscureText: obscureText,
+      validator: validator,
       decoration: InputDecoration(
-          labelText: labelText,
-          prefixIcon: Icon(icon),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: Colors.black),
-          ),
-          iconColor: Colors.black,
-          labelStyle: const TextStyle(
-            color: Colors.black,
-          ),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 2, color: Colors.black))),
+        labelText: labelText,
+        prefixIcon: Icon(icon),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(width: 2, color: Colors.black),
+        ),
+        iconColor: Colors.black,
+        labelStyle: const TextStyle(
+          color: Colors.black,
+        ),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(width: 2, color: Colors.black),
+        ),
+      ),
     );
   }
 }

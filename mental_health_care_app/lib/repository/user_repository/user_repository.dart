@@ -32,11 +32,18 @@ class UserRepository extends GetxController {
   }
 
   //fetch details of user
-  Future<UserModel?> getUserDetails(String email) async {
-    final snapshot =
-        await _db.collection("Users").where("Email", isEqualTo: email).get();
-    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
-    return userData;
+  Future<UserModel?> getUserDetails(String uid) async {
+    try {
+      final snapshot = await _db.collection("Users").doc(uid).get();
+
+      if (!snapshot.exists) {
+        throw Exception("User document does not exist");
+      }
+
+      return UserModel.fromSnapshot(snapshot);
+    } catch (e) {
+      throw Exception("Failed to get user details: $e");
+    }
   }
 
   Future<List<UserModel>> allUser() async {
