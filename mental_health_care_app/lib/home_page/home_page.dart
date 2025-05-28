@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mental_health_care_app/solution/solutionHome.dart';
 import '../main.dart';
 import 'package:mental_health_care_app/util/emoji_faces.dart';
 import 'package:mental_health_care_app/user_profile/profile.dart';
@@ -29,6 +30,11 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const Profile()),
+      );
+    } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Solutions()),
       );
     }
   }

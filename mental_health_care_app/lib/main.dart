@@ -6,6 +6,8 @@ import 'package:mental_health_care_app/home_page/home_page.dart';
 import 'package:mental_health_care_app/login/login_screen.dart';
 import 'package:mental_health_care_app/repository/user_repository/user_repository.dart';
 import 'package:mental_health_care_app/signup/signup_screen.dart';
+import 'package:mental_health_care_app/solution/solutionHome.dart';
+
 import 'package:mental_health_care_app/welcome/welcome_screen.dart';
 import 'package:mental_health_care_app/forgotpassword/ForgotPasswordScreen.dart'; // Update path if neede
 import 'package:mental_health_care_app/screens/resources_screen.dart';
@@ -55,6 +57,7 @@ class MyApp extends StatelessWidget {
         '/ForgotPassword': (context) => const ForgotPasswordScreen(),
         '/resources': (context) => const ResourcesScreen(),
         '/depression-test': (context) => const DepressionTestScreen(),
+        '/solution': (context) => const Solutions(),
       },
     );
   }
