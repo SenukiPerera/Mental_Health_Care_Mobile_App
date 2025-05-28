@@ -18,12 +18,12 @@ class textFormField extends StatelessWidget {
   final String? initialValue;
   final String? Function(String?)? validator;
 
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      initialValue: initialValue,
       controller: controller,
+      // Pass initialValue only if controller is null
+      initialValue: controller == null ? initialValue : null,
       obscureText: obscureText,
       validator: validator,
       decoration: InputDecoration(
