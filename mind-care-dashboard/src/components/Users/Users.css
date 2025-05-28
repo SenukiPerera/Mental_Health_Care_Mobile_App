@@ -1,0 +1,74 @@
+/* Layout with Sidebar */
+.user-info-container {
+  display: flex;
+  position: relative;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+}
+
+/* Main content */
+.user-info-container > .content {
+  flex-grow: 1;
+  margin-left: 270px; /* Account for sidebar width */
+  padding: 40px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Page title */
+.user-info-container h2 {
+  font-size: 30px;
+  color: #240000;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.sidebar-header h2 {
+  font-size: 24px;
+  color: #ffffff;
+}
+
+/* User card styled like dashboard stat cards */
+.user-card {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 25px auto;
+}
+
+/* Text inside user card */
+.user-card p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Empty state message */
+.no-user {
+  text-align: center;
+  color: #888;
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+/* Optional: Profile icon */
+.profile-icon {
+  position: absolute;
+  top: 30px;  
+  right: 30px; 
+  width: 40px;  
+  height: 40px;
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}

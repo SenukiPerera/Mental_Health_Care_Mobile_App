@@ -1,0 +1,82 @@
+/* Dashboard Layout Container */
+.dashboard-container {
+  display: flex;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Main Dashboard Area */
+.dashboard {
+  margin-left: 270px; /* Matches sidebar width */
+  padding: 30px 40px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Profile Icon (Top Right) */
+.profile-icon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Dashboard Heading */
+.dashboard h3 {
+  font-size: 32px;
+  color: #5c4d7d;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+/* Stats Cards Container */
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+/* Individual Stats Card */
+.stats-card {
+  background-color: #ffffff;
+  padding: 25px 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  flex: 1 1 220px; /* Flex item with min width */
+  max-width: 240px;
+  transition: transform 0.2s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+}
+
+.stats-card h4 {
+  font-size: 20px;
+  color: #444;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.stats-card p {
+  font-size: 38px;
+  font-weight: bold;
+  color: #5c4d7d;
+  margin-top: 8px;
+}
