@@ -40,6 +40,7 @@ class signup_form_widget extends StatelessWidget {
               controller: controller.password,
               labelText: 'Password',
               icon: Icons.lock,
+              obscureText: true,
             ),
             const SizedBox(height: 20),
             Container(
