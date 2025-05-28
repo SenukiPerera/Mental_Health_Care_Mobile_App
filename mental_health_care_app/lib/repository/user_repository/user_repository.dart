@@ -42,7 +42,7 @@ class UserRepository extends GetxController {
     } else {
       throw Exception("User not found");
     }
-
+  }
 
   Future<List<UserModel>> allUser() async {
     final snapshot = await _db.collection("Users").get();
