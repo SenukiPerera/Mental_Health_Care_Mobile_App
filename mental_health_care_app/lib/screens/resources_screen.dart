@@ -1,9 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:mental_health_care_app/home_page/home_page.dart';
+import 'package:mental_health_care_app/solution/solutionHome.dart';
+import 'package:mental_health_care_app/user_profile/profile.dart';
 import 'stress_management_page.dart';
 import 'depression.dart'; // ✅ Import the depression page
 
-class ResourcesScreen extends StatelessWidget {
+class ResourcesScreen extends StatefulWidget {
   const ResourcesScreen({super.key});
+
+  @override
+  State<ResourcesScreen> createState() => _ResourcesScreenState();
+}
+
+class _ResourcesScreenState extends State<ResourcesScreen> {
+  int _selectedIndex = 1;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } else if (index == 4) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Profile()),
+      );
+    } else if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Solutions()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +93,22 @@ class ResourcesScreen extends StatelessWidget {
     ];
 
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Resources'),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.health_and_safety), label: 'Solutions'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+      ),
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -67,7 +116,8 @@ class ResourcesScreen extends StatelessWidget {
             children: [
               // 🔝 Top Bar
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -123,11 +173,13 @@ class ResourcesScreen extends StatelessWidget {
 
               // 🔍 Search Bar
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Search resources...',
-                    prefixIcon: const Icon(Icons.search, color: Color(0xFF4A90E2)),
+                    prefixIcon:
+                        const Icon(Icons.search, color: Color(0xFF4A90E2)),
                     filled: true,
                     fillColor: const Color(0xFFF0F4F8),
                     contentPadding: const EdgeInsets.symmetric(
@@ -174,7 +226,8 @@ class ResourcesScreen extends StatelessWidget {
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text('${item['title']} page is under construction'),
+                                  content: Text(
+                                      '${item['title']} page is under construction'),
                                 ),
                               );
                             }
@@ -249,7 +302,8 @@ class ResourcesScreen extends StatelessWidget {
               Column(
                 children: featuredResources.map((item) {
                   return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: Colors.white,

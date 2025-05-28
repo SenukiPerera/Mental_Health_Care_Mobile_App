@@ -51,7 +51,9 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             // Custom logo image
             Image.asset(
-              'assets/images/Mindcare logo.png',
+
+              'assets/images/logo_white.png',
+
               width: 200,
               height: 200,
             ),
