@@ -1,9 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mental_health_care_app/authentication/controllers/profile_contoller.dart';
 import 'package:mental_health_care_app/main.dart';
 import 'package:mental_health_care_app/user_profile/widgets/textFormField.dart';
 
-class UpdateProfile extends StatelessWidget {
+class UpdateProfile extends StatefulWidget {
   const UpdateProfile({super.key});
+
+  @override
+  State<UpdateProfile> createState() => _UpdateProfileState();
+}
+
+class _UpdateProfileState extends State<UpdateProfile> {
+  final ProfileController controller = Get.put(ProfileController());
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserData();
+  }
+
+  void loadUserData() async {
+    await controller.fetchUserData();
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +34,7 @@ class UpdateProfile extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context); // Go back to the previous screen
-          },
+          onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios, color: blueBackgroungColor),
         ),
         title: const Text(
@@ -24,116 +45,102 @@ class UpdateProfile extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        automaticallyImplyLeading: false, // This removes the back arrow
+        automaticallyImplyLeading: false,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(25.0),
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  SizedBox(
-                    height: 120,
-                    width: 120,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image(
-                        image: const AssetImage(
-                            'assets/images/profile_picture.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: blueBackgroungColor,
-                      ),
-                      child: const Icon(
-                        Icons.camera_alt,
-                        color: Colors.white,
-                        size: 18.0,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Form(
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.all(25.0),
+                child: Form(
                   child: Column(
-                children: [
-                  textFormField(
-                    labelText: 'Full Name',
-                    icon: Icons.person,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  textFormField(
-                    labelText: 'Email',
-                    icon: Icons.email,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  textFormField(
-                    labelText: 'Phone Number',
-                    icon: Icons.phone,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  textFormField(
-                    labelText: 'Password',
-                    icon: Icons.lock,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 45,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Navigate to UpdateProfile screen
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                UpdateProfile(), // Corrected class name
+                    children: [
+                      Stack(
+                        children: [
+                          SizedBox(
+                            height: 120,
+                            width: 120,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image.asset(
+                                'assets/images/profile_picture.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: blueBackgroungColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              width: 35,
+                              height: 35,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: blueBackgroungColor,
+                              ),
+                              child: const Icon(
+                                Icons.camera_alt,
+                                color: Colors.white,
+                                size: 18.0,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 50),
+                      textFormField(
+                        controller: controller.fullNameController,
+                        labelText: 'Full Name',
+                        icon: Icons.person,
+                      ),
+                      const SizedBox(height: 20),
+                      textFormField(
+                        controller: controller.emailController,
+                        labelText: 'Email',
+                        icon: Icons.email,
+                      ),
+                      const SizedBox(height: 20),
+                      textFormField(
+                        controller: controller.phoneController,
+                        labelText: 'Phone Number',
+                        icon: Icons.phone,
+                      ),
+                      const SizedBox(height: 20),
+                      textFormField(
+                        controller: controller.passwordController,
+                        labelText: 'Password',
+                        icon: Icons.lock,
+                        obscureText: true,
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 45,
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            await controller.updateUserData();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: blueBackgroungColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: const Text(
+                            'Save Profile',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
                         ),
                       ),
-                      child: const Text(
-                        'Edit Profile',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
+                    ],
                   ),
-                ],
-              ))
-            ],
-          ),
-        ),
-      ),
+                ),
+              ),
+            ),
     );
   }
 }
