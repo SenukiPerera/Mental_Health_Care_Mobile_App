@@ -75,23 +75,22 @@ class _SolutionsState extends State<Solutions> {
           ),
         );
         break;
-      // case 'Physical Wellness':
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => const PhysicalWellness(),
-      //     ),
-      //   );
-      //   break;
-      // case 'Journaling':
-      //   Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => CreativeExpression(),
-      //     ),
-      //   );
-      //   break;
-
+      case 'Physical Wellness':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const PhysicalWellness(),
+          ),
+        );
+        break;
+      case 'Creative Expression':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CreativeExpression(),
+          ),
+        );
+        break;
       // // Add more cases for future pages PhysicalWellness
       // default:
       //   ScaffoldMessenger.of(context).showSnackBar(
