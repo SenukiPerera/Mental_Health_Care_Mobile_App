@@ -3,7 +3,7 @@ import 'package:mental_health_care_app/home_page/home_page.dart';
 import 'package:mental_health_care_app/screens/resources_screen.dart';
 import 'package:mental_health_care_app/solution/constants/colors.dart';
 import 'package:mental_health_care_app/solution/solutions/crisis_resources_screen.dart';
-//import 'package:mental_health_care_app/solution/solutions/journaling_screen.dart';
+//import 'package:mental_health_care_app/solution/solutions/creative_expression.dart';
 import 'package:mental_health_care_app/solution/solutions/mindfulness_screen.dart';
 //import 'package:mental_health_care_app/solution/solutions/physical_wellness_screen.dart';
 import 'package:mental_health_care_app/solution/solutions/sleep_improvement_screen.dart';
