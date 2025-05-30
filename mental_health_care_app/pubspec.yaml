@@ -16,6 +16,9 @@ dependencies:
   firebase_auth: ^5.5.4
   get: ^4.7.2
   cloud_firestore: ^5.6.8
+  url_launcher: ^6.3.1
+  audioplayers: ^6.4.0
+  font_awesome_flutter: ^10.8.0
 
   
 
@@ -70,6 +73,10 @@ flutter:
     - assets/images/deptest.png
     - assets/images/Mindcare_logo.png
     - assets/images/icon_app.png
+
+    - assets/music/abc.mp3
+    - assets/music/abcd.mp3
+    - assets/music/abcde.mp3
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

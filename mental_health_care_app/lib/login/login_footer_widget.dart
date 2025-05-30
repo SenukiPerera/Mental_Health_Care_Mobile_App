@@ -27,7 +27,9 @@ class loginFooterWidget extends StatelessWidget {
                     color: blueBackgroungColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w500)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/LoginScreen');
+            },
             style: TextButton.styleFrom(
               side: BorderSide(color: blueBackgroungColor), // blue border
               shape: RoundedRectangleBorder(
@@ -61,6 +63,23 @@ class loginFooterWidget extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            )),
+        const SizedBox(
+          height: 10,
+        ),
+        TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/ForgotPassword');
+            },
+            child: Text.rich(
+              TextSpan(
+                text: "Forgot Password?",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: blueBackgroungColor,
+                ),
               ),
             )),
       ],

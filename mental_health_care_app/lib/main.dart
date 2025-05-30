@@ -4,7 +4,10 @@ import 'package:mental_health_care_app/Splash_Screen/splashscreen.dart';
 import 'package:mental_health_care_app/firebase_options.dart';
 import 'package:mental_health_care_app/home_page/home_page.dart';
 import 'package:mental_health_care_app/login/login_screen.dart';
+import 'package:mental_health_care_app/repository/user_repository/user_repository.dart';
 import 'package:mental_health_care_app/signup/signup_screen.dart';
+import 'package:mental_health_care_app/solution/solutionHome.dart';
+
 import 'package:mental_health_care_app/welcome/welcome_screen.dart';
 import 'package:mental_health_care_app/forgotpassword/ForgotPasswordScreen.dart'; // Update path if neede
 import 'package:mental_health_care_app/screens/resources_screen.dart';
@@ -19,6 +22,8 @@ const Color lightBlueBackgroundColor = Color(0xFFEBF2FD);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  Get.put(UserRepository()); // Register repository here
 
   Get.put(AuthenticationRepositiry()); // Put your repo before runApp
 
@@ -49,9 +54,10 @@ class MyApp extends StatelessWidget {
         '/SignupScreen': (context) => SignUpScreen(),
         '/WelcomeScreen': (context) => WelcomeScreen(),
         '/LoginScreen': (context) => LoginScreen(),
-        '/ForgotPassword': (context) => const ForgotPasswordScreen(),
+        '/ForgotPassword': (context) => ForgotPasswordScreen(),
         '/resources': (context) => const ResourcesScreen(),
         '/depression-test': (context) => const DepressionTestScreen(),
+        '/solution': (context) => const Solutions(),
       },
     );
   }
